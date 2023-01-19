@@ -4,10 +4,13 @@ from tensorflow import keras
 def model(data_shape, neurons):
 
     mdl = tf.keras.Sequential()    
-    mdl.add(tf.keras.layers.Conv1D(64, kernel_size=3, activation='relu', input_shape=(data_shape, 1)))
-    mdl.add(tf.keras.layers.LSTM(neurons))
+    mdl.add(tf.keras.layers.LSTM(
+        neurons,
+        input_shape=(data_shape,1)
+        ))
     mdl.add(tf.keras.layers.Dropout(0.1))
     mdl.add(tf.keras.layers.BatchNormalization())
+    mdl.add(tf.keras.layers.Dense(32))
     mdl.add(tf.keras.layers.Dense(32))
     mdl.add(tf.keras.layers.Dense(1))
 
